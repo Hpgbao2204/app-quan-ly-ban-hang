@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Brand, Categories
+from .models import Product, Brand, Categories, UserInfo
 
 
 @admin.register(Product)
@@ -23,4 +23,7 @@ class CategoriesAdmin(admin.ModelAdmin):
     search_fields = ('category_name',)
 
 
-
+@admin.register(UserInfo)
+class UserInfo(admin.ModelAdmin):
+    list_display = ('user', 'address', 'phone')
+    search_fields = ('user', 'address', 'phone')
