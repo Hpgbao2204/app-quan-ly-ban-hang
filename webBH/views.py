@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
-from .models import UserInfo
+from .models import Profile
 from django.utils.timezone import now
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.decorators import api_view
-from .serializers import UserInfoSerializer
+from .serializers import ProfileSerializer
 from rest_framework import (status,
                             generics)
 
@@ -31,7 +31,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             if user:
                 user_agent = request.META.get('HTTP_USER_AGENT', '')
                 # Lưu hoặc cập nhật UserAgent
-                UserInfo.objects.update_or_create(user=user, defaults={'user_agent': user_agent})
+                Profile.objects.update_or_create(user=user, defaults={'user_agent': user_agent})
 
         return response
 
@@ -68,8 +68,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class CreateUserView(generics.CreateAPIView):
-    serializer_class = UserInfoSerializer
-    queryset = UserInfo.objects.all()
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
 
 
 class CustomLoginView(TokenObtainPairView):

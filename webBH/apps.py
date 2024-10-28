@@ -7,4 +7,7 @@ class WebbhConfig(AppConfig):
 
     # Tích hopwj signals vào
     def ready(self):
-        import webBH.signals
+        try:
+            import webBH.signals
+        except ImportError:
+            pass

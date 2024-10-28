@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Brand(models.Model):
     """
     Brand model
@@ -36,7 +37,7 @@ class Product(models.Model):
         return self.name
 
 
-class UserInfo(models.Model):
+class Profile(models.Model):
     """
     UserInfo model
     """
@@ -46,4 +47,3 @@ class UserInfo(models.Model):
 
     def __str__(self):
         return self.user.username
-

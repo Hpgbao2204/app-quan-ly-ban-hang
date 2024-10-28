@@ -138,7 +138,8 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -164,3 +165,25 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://127.0.0.1:8000',
+# ]
+#
+# X_FRAME_OPTIONS = 'SAMEORIGIN'
+#
+
+CORS_ALLOW_HEADERS = (
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Origin",
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+)
+CORS_ALLOW_CREDENTIALS = True

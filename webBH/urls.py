@@ -2,7 +2,7 @@ from django.urls import path
 
 from webBH.apis.productAPI import (ProductListView,
                                    ProductDetailView,
-                                   ProductCreateView,
+                                   product_create_view,
                                    ProductUpdateView,
                                    ProductDeleteView)
 
@@ -12,10 +12,10 @@ from .views import (CustomTokenObtainPairView, CreateUserView, CustomLoginView)
 
 urlpatterns = [
     path('products/', ProductListView.as_view(), name='product-list'),
-    path('products/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
-    path('products/create/', ProductCreateView.as_view(), name='product-create'),
-    path('products/update/<int:pk>/', ProductUpdateView.as_view(), name='product-update'),
-    path('products/delete/<int:pk>/', ProductDeleteView.as_view(), name='product-delete'),
+    path('products/<str:code>/', ProductDetailView.as_view(), name='product-detail'),
+    path('products/create/', product_create_view, name='product-create'),
+    path('products/update/<str:code>/', ProductUpdateView.as_view(), name='product-update'),
+    path('products/delete/<str:code>/', ProductDeleteView.as_view(), name='product-delete'),
 
 
     path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
