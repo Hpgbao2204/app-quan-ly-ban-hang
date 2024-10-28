@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Brand(models.Model):
     """
@@ -34,4 +34,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserInfo(models.Model):
+    """
+    UserInfo model
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200, help_text="Nhập địa chỉ")
+    phone = models.CharField(max_length=20, help_text="Nhập số điện thoại")
+
+    def __str__(self):
+        return self.user.username
 
